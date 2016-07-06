@@ -52,6 +52,24 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyShop.Common\MyShop.Common.csproj">
+      <Project>{afee6efe-dcd1-456c-a2da-65eae08628be}</Project>
+      <Name>MyShop.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyShop.Data\MyShop.Data.csproj">
+      <Project>{33c69019-dfad-4cf0-b60d-28841cd58631}</Project>
+      <Name>MyShop.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyShop.Model\MyShop.Model.csproj">
+      <Project>{eea38a34-1620-43a7-bd01-2ad777782cf7}</Project>
+      <Name>MyShop.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyShop.Service\MyShop.Service.csproj">
+      <Project>{f8a3ee71-dc40-4440-9e6e-a8b483a4a6c5}</Project>
+      <Name>MyShop.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
