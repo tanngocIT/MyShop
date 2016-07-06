@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MyShop.Model.Models;
+using MyShop.Service;
+using MyShop.Web.Infrastructure.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,33 +10,100 @@ using System.Web.Http;
 
 namespace MyShop.Web.Api
 {
-    public class PostCategoryController : ApiController
-    {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+   
+        [RoutePrefix("api/postcategory")]
+        public class PostCategoryController : ApiControllerBase
         {
-            return new string[] { "value1", "value2" };
-        }
+            IPostCategoryService _postCategoryService;
 
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+            public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) :
+                base(errorService)
+            {
+                this._postCategoryService = postCategoryService;
+            }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-        }
+            [Route("getall")]
+            public HttpResponseMessage Get(HttpRequestMessage request)
+            {
+                return CreateHttpResponse(request, () =>
+                {
+                    HttpResponseMessage response = null;
+                    if (ModelState.IsValid)
+                    {
+                        request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                    }
+                    else
+                    {
+                        var listCategory = _postCategoryService.GetAll();
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+                        response = request.CreateResponse(HttpStatusCode.OK, listCategory);
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+                    }
+                    return response;
+                });
+            }
+
+            public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
+            {
+                return CreateHttpResponse(request, () =>
+                {
+                    HttpResponseMessage response = null;
+                    if (ModelState.IsValid)
+                    {
+                        request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                    }
+                    else
+                    {
+                        var category = _postCategoryService.Add(postCategory);
+                        _postCategoryService.Save();
+
+                        response = request.CreateResponse(HttpStatusCode.Created, category);
+
+                    }
+                    return response;
+                });
+            }
+
+            public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
+            {
+                return CreateHttpResponse(request, () =>
+                {
+                    HttpResponseMessage response = null;
+                    if (ModelState.IsValid)
+                    {
+                        request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                    }
+                    else
+                    {
+                        _postCategoryService.Update(postCategory);
+                        _postCategoryService.Save();
+
+                        response = request.CreateResponse(HttpStatusCode.OK);
+
+                    }
+                    return response;
+                });
+            }
+
+            public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+            {
+                return CreateHttpResponse(request, () =>
+                {
+                    HttpResponseMessage response = null;
+                    if (ModelState.IsValid)
+                    {
+                        request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                    }
+                    else
+                    {
+                        _postCategoryService.Delete(id);
+                        _postCategoryService.Save();
+
+                        response = request.CreateResponse(HttpStatusCode.OK);
+
+                    }
+                    return response;
+                });
+            }
         }
     }
-}
