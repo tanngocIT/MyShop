@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MyShop.Data
 {
-    public class MyShopDbContext : DbContext
+    public class MyShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public MyShopDbContext() : base("MyShopConnection")
         {
@@ -38,9 +39,16 @@ namespace MyShop.Data
 
         public DbSet<Error> Errors { set; get; }
 
+        public static MyShopDbContext Create()
+        {
+            return new MyShopDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
+       
     }
 }

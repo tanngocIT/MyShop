@@ -1,28 +1,33 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Owin;
-using Owin;
-using Autofac;
-using System.Reflection;
-using MyShop.Data.Infrastructure;
-using MyShop.Data.Repositories;
-using MyShop.Service;
-using System.Web.Mvc;
-using System.Web.Http;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin;
+using Microsoft.Owin.Security.DataProtection;
 using MyShop.Data;
+using MyShop.Data.Infrastructure;
+using MyShop.Data.Repositories;
+using MyShop.Model.Models;
+using MyShop.Service;
+using Owin;
+using System.Reflection;
+using System.Web;
+using System.Web.Http;
+using System.Web.Mvc;
+
 [assembly: OwinStartup(typeof(MyShop.Web.App_Start.Startup))]
 
 namespace MyShop.Web.App_Start
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888
             ConfigAutofac(app);
+            ConfigureAuth(app);
         }
+
         private void ConfigAutofac(IAppBuilder app)
         {
             var builder = new ContainerBuilder();
@@ -34,6 +39,13 @@ namespace MyShop.Web.App_Start
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
             builder.RegisterType<MyShopDbContext>().AsSelf().InstancePerRequest();
+
+            //Asp.net Identity
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             // Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
@@ -49,7 +61,6 @@ namespace MyShop.Web.App_Start
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container); //Set the WebApi DependencyResolver
-
         }
     }
 }
