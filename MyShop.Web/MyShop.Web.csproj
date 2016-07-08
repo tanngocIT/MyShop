@@ -224,6 +224,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -241,12 +242,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\plusgin\angular\angular-csp.css" />
+    <Content Include="Scripts\plusgin\angular\angular.js" />
+    <Content Include="Scripts\plusgin\angular\angular.min.js" />
+    <Content Include="Scripts\plusgin\angular\index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -259,7 +265,6 @@
   <ItemGroup>
     <Folder Include="Assets\Admin\" />
     <Folder Include="Assets\Client\" />
-    <Folder Include="Scripts\plusgin\" />
     <Folder Include="Scripts\spa\" />
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +294,28 @@
       <Project>{1994467c-ffd3-4dda-9ff0-c607cfac60aa}</Project>
       <Name>MyShop.UnitTest</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".bowerrc" />
+    <Content Include="bower.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\plusgin\angular\.bower.json" />
+    <Content Include="Scripts\plusgin\angular\angular.min.js.gzip" />
+    <Content Include="Scripts\plusgin\angular\angular.min.js.map" />
+    <Content Include="Scripts\plusgin\angular\bower.json" />
+    <Content Include="Scripts\plusgin\angular\LICENSE.md" />
+    <Content Include="Scripts\plusgin\angular\package.json" />
+    <Content Include="Scripts\plusgin\angular\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
