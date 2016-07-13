@@ -265,6 +265,7 @@
     <Content Include="app\shared\filter\statusFilter.js" />
     <Content Include="app\shared\modules\myshop.common.js" />
     <Content Include="app\shared\serivice\apiService.js" />
+    <Content Include="app\shared\serivice\notificationService.js" />
     <Content Include="Assets\Admin\css\AdminLTE.css" />
     <Content Include="Assets\Admin\css\AdminLTE.min.css" />
     <Content Include="Assets\Admin\css\skins\skin-black-light.css" />
@@ -492,6 +493,10 @@
     <Content Include="Assets\Admin\libs\slimScroll\examples\style.css" />
     <Content Include="Assets\Admin\libs\slimScroll\jquery.slimscroll.js" />
     <Content Include="Assets\Admin\libs\slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="Assets\Admin\libs\toastr\toastr.css" />
+    <Content Include="Assets\Admin\libs\toastr\toastr.js" />
+    <Content Include="Assets\Admin\libs\toastr\toastr.min.css" />
+    <Content Include="Assets\Admin\libs\toastr\toastr.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -680,6 +685,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Admin\libs\toastr\.bower.json" />
+    <Content Include="Assets\Admin\libs\toastr\bower.json" />
+    <Content Include="Assets\Admin\libs\toastr\README.md" />
+    <Content Include="Assets\Admin\libs\toastr\toastr.js.map" />
+    <Content Include="Assets\Admin\libs\toastr\toastr.less" />
+    <Content Include="Assets\Admin\libs\toastr\toastr.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
