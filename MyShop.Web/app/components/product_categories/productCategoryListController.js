@@ -4,17 +4,26 @@
     productCategoryListController.$inject = ['$scope', 'apiService'];
 
     function productCategoryListController($scope, apiService) {
+
         $scope.productCategories = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
         $scope.getProductCategories = getProductCategories;
-        function getProductCategories(page) {
+        $scope.keyword = '';
+
+        $scope.search = search;
+        function search() {
+            getProductCategories();
+        }
+
+        function getProductCategories( page) {
             page = page || 0;
             var config = {
-                params:{
-                    page:page,
-                    pageSize:2,
-            
+                params: {
+                    keyword: $scope.keyword,
+                    page: page,
+                    pageSize: 2,
+
                 }
             }
             apiService.get('/api/productcategory/getall', config, function (result) {
