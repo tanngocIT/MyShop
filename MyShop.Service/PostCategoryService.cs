@@ -36,6 +36,7 @@ namespace MyShop.Service
         public PostCategory Add(PostCategory postCategory)
         {
             return _postCategoryRepository.Add(postCategory);
+            
         }
 
         public void Delete(int id)

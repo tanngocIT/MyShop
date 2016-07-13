@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using MyShop.Data.Infrastructure;
+﻿using MyShop.Data.Infrastructure;
 using MyShop.Model.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MyShop.Data.Repositories
 {
-    public interface IProductCategoryRepository
+    public interface IProductCategoryRepository : IRepository<ProductCategory>
     {
         IEnumerable<ProductCategory> GetByAlias(string alias);
     }
