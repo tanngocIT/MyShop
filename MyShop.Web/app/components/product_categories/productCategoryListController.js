@@ -1,9 +1,9 @@
 ﻿(function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
-    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
+    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox','$filter'];
 
-    function productCategoryListController($scope, apiService, notificationService, $ngBootbox) {
+    function productCategoryListController($scope, apiService, notificationService, $ngBootbox, $filter) {
 
         $scope.productCategories = [];
         $scope.page = 0;
@@ -13,7 +13,53 @@
 
         $scope.search = search;
         $scope.deleteProductCategory = deleteProductCategory;
+        $scope.selectAll = selectAll;
+        $scope.deleteMultiple = deleteMultiple;
 
+        function deleteMultiple() {
+            var listId = [];
+            $.each($scope.selected, function (i, item) {
+                listId.push(item.ID);
+            });
+            var config = {
+                params: {
+                    checkedProductCategories: JSON.stringify(listId)
+                }
+            }
+            apiService.del('/api/productcategory/deletemulti', config, function (result) {
+                notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
+                search();
+            }, function (error) {
+                notificationService.displayError('Xóa không thành công');
+            });
+        }
+
+
+
+        $scope.isAll = false;
+        function selectAll() {
+            if ($scope.isAll === false) {
+                angular.forEach($scope.productCategories, function (item) {
+                    item.checked = true;
+                });
+                $scope.isAll = true;
+            } else {
+                angular.forEach($scope.productCategories, function (item) {
+                    item.checked = false;
+                });
+                $scope.isAll = false;
+            }
+        }
+
+        $scope.$watch("productCategories", function (n, o) {
+            var checked = $filter("filter")(n, { checked: true });
+            if (checked.length) {
+                $scope.selected = checked;
+                $('#btnDelete').removeAttr('disabled');
+            } else {
+                $('#btnDelete').attr('disabled', 'disabled');
+            }
+        }, true);
 
         function search() {
             getProductCategories();
@@ -34,6 +80,7 @@
                 })
             });
         }
+
         function getProductCategories(page) {
             page = page || 0;
             var config = {
@@ -62,6 +109,7 @@
                 console.log("Can not load data from server");
             });
         }
+
         $scope.getProductCategories();
     }
 })(angular.module('myshop.product_categories'));
