@@ -32,14 +32,17 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="name" ng-change="GetSeoTitle()" ng-model="productCategory.Name" placeholder="Tên danh mục">
+                            <input type="text" class="form-control" name="name" ng-maxlength="256" required ng-change="GetSeoTitle()" ng-model="productCategory.Name" placeholder="Tên danh mục">
+                            <span ng-show="frmAddProductCategory.name.$touched==true ? frmAddProductCategory.name.$invalid :false " class="has-error">Phải nhập tên danh mục</span>
+                            <span ng-show="frmAddProductCategory.name.$error.maxlength" class="has-error">Tên tối đa 256 ký tự</span>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề SEO</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="alias" ng-model="productCategory.Alias" placeholder="Tiêu đề SEO">
+                            <input type="text" class="form-control" name="alias" ng-maxlength="500" ng-model="productCategory.Alias" placeholder="Tiêu đề SEO">
+                            <span ng-show="frmAddProductCategory.description.$error.maxlength" class="has-error">Mô tả  tối đa 500 ký tự</span>
                         </div>
                     </div>
 
@@ -63,7 +66,8 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">Thứ tự hiển thị</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" name="displayOrder" ng-model="productCategory.DisplayOrder" placeholder="Thứ tự hiển thị">
+                            <input type="number" class="form-control" name="displayOrder" required ng-model="productCategory.DisplayOrder" placeholder="Thứ tự hiển thị">
+                            <span ng-show="frmAddProductCategory.displayOrder.$touched==true ? frmAddProductCategory.displayOrder.$invalid :false " class="has-error">Phải nhập thứ tự hiển thị</span>
                         </div>
                     </div>
 
@@ -107,7 +111,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <button ui-sref="product_categories" class="btn btn-default">Hủy</button>
-                    <button type="submit" class="btn btn-success pull-right">Lưu</button>
+                    <button type="submit" ng-disabled="frmAddProductCategory.$invalid" class="btn btn-success pull-right">Lưu</button>
                 </div>
                 <!-- /.box-footer -->
             </form>

@@ -12,7 +12,7 @@ namespace MyShop.Service
 
         void Update(ProductCategory ProductCategory);
 
-        void Delete(int id);
+        ProductCategory Delete(int id);
 
         IEnumerable<ProductCategory> GetAll();
 
@@ -41,9 +41,9 @@ namespace MyShop.Service
             return _productCategoryRepository.Add(ProductCategory);
         }
 
-        public void Delete(int id)
+        public ProductCategory Delete(int id)
         {
-            _productCategoryRepository.Delete(id);
+            return _productCategoryRepository.Delete(id);
         }
 
         public IEnumerable<ProductCategory> GetAll()
