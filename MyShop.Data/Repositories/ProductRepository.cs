@@ -3,7 +3,7 @@ using MyShop.Model.Models;
 
 namespace MyShop.Data.Repositories
 {
-    public interface IProductRepository
+    public interface IProductRepository: IRepository<Product>
     {
     }
 
@@ -11,6 +11,7 @@ namespace MyShop.Data.Repositories
     {
         public ProductRepository(IDbFactory dbFactory) : base(dbFactory)
         {
+
         }
     }
 }
