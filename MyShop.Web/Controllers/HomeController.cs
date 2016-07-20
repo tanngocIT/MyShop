@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using MyShop.Model.Models;
+using MyShop.Service;
+using MyShop.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,8 +10,19 @@ using System.Web.Mvc;
 
 namespace MyShop.Web.Controllers
 {
+
+
     public class HomeController : Controller
     {
+        IProductCategoryService _productCategoryService;
+        //ICommonService _commonService;
+
+        public HomeController(IProductCategoryService productCategoryService)//, ICommonService commonService)
+        {
+            _productCategoryService = productCategoryService;
+            //_commonService = commonService;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -21,7 +36,10 @@ namespace MyShop.Web.Controllers
         [ChildActionOnly]
         public ActionResult Category()
         {
-            return PartialView();
+
+            var model = _productCategoryService.GetAll();
+            var listProductCategoryViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+            return PartialView(listProductCategoryViewModel);
         }
 
         [ChildActionOnly]
