@@ -222,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
@@ -279,7 +280,10 @@
     <Content Include="app\shared\filter\statusFilter.js" />
     <Content Include="app\shared\modules\myshop.common.js" />
     <Content Include="app\shared\serivice\apiService.js" />
+    <Content Include="app\shared\serivice\authData.js" />
+    <Content Include="app\shared\serivice\authenticationService.js" />
     <Content Include="app\shared\serivice\commonService.js" />
+    <Content Include="app\shared\serivice\loginService.js" />
     <Content Include="app\shared\serivice\notificationService.js" />
     <Content Include="app\shared\views\baseView.html" />
     <Content Include="Assets\Admin\css\AdminLTE.css" />
@@ -342,6 +346,22 @@
     <Content Include="Assets\Admin\js\app.js" />
     <Content Include="Assets\Admin\js\app.min.js" />
     <Content Include="Assets\Admin\js\demo.js" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\build\loading-bar.css" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\build\loading-bar.js" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\build\loading-bar.min.css" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\build\loading-bar.min.js" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\Gruntfile.js" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\index.js" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\src\loading-bar.css" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\src\loading-bar.js" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\.gitattributes" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\.gitignore" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\demo\demo-app.js" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\demo\demo-style.css" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\demo\demo.html" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\dist\angular-local-storage.js" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\dist\angular-local-storage.min.js" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\index.js" />
     <Content Include="Assets\Admin\libs\angular-ui-router\release\angular-ui-router.js" />
     <Content Include="Assets\Admin\libs\angular-ui-router\release\angular-ui-router.min.js" />
     <Content Include="Assets\Admin\libs\angular-ui-router\src\common.js" />
@@ -4425,6 +4445,27 @@
     <Content Include="Assets\Admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\Admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Assets\Admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Admin\libs\angular-loading-bar\.bower.json" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\bower.json" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\CHANGELOG.md" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\CONTRIBUTING.md" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\ISSUE_TEMPLATE.md" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\LICENSE" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\package.json" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Assets\Admin\libs\angular-loading-bar\README.md" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\.bower.json" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\.bowerrc" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\.editorconfig" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\.travis.yml" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\bower.json" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\CHANGELOG.md" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\dist\angular-local-storage.min.js.map" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\LICENSE" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\package.json" />
+    <Content Include="Assets\Admin\libs\angular-local-storage\README.md" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
