@@ -1,13 +1,13 @@
 ﻿  <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Thêm mới danh mục sản phẩm
+        Cập nhật sản phẩm
 
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
         <li><a href="#">Sản phẩm</a></li>
-        <li class="active">Danh mục sản phẩm</li>
+        <li class="active">Cập nhật sản phẩm</li>
     </ol>
 </section>
 
@@ -15,7 +15,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Cập nhật sản phẩm</h3>
+            <h3 class="box-title">Cập nhật sản phẩm <strong>{{product.Name}}</strong></h3>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                 <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
@@ -68,8 +68,18 @@
                         <label for="inputEmail3" class="col-sm-2 control-label">Hình ảnh</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" ng-maxlength="256" name="image" ng-model="product.Image" placeholder="Hình ảnh">
-                            <span ng-show="frmUpdateProduct.Image.$error.maxlength" class="has-error">Hình ảnh tối đa 256 ký tự</span>
+                            <span ng-show="frmAddProduct.Image.$error.maxlength" class="has-error">Hình ảnh tối đa 256 ký tự</span>
+                            <button style="margin-top:5px;" type="button" class="btn btn-default" ng-click="ChooseImage()">Chọn ảnh</button>
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Thêm hình ảnh</label>
+                        <div class="col-sm-10">
+                            <ul class="list-inline">
+                                <li ng-repeat="img in moreImages"><img ng-src="{{img}}" width="100" /></li>
+                            </ul>
+                            <button class="btn btn-default" type="button" ng-click="ChooseMoreImage()">Chọn ảnh</button>
                         </div>
                     </div>
 
@@ -89,10 +99,24 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Bảo hành</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" ng-maxlength="256" name="warranty" ng-model="product.Warranty" placeholder="Bảo hành"> Tháng
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">Mô tả sản phẩm</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" name="content" ckeditor="ckeditorOptions" required ng-model="product.Content" placeholder="Mô tả sản phẩm"></textarea>
                             <span ng-show="frmUpdateProduct.content.$touched==true ? frmUpdateProduct.content.$invalid :false " class="has-error">Phải nhập mô tả </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Tags</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="tags" ng-model="product.Tags" placeholder="Tags1,Tags2">
                         </div>
                     </div>
 
@@ -128,7 +152,7 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    <button ui-sref="product_categories" class="btn btn-default">Hủy</button>
+                    <button ui-sref="products" class="btn btn-default">Hủy</button>
                     <button type="submit" ng-disabled="frmUpdateProduct.$invalid" class="btn btn-success pull-right">Lưu</button>
                 </div>
                 <!-- /.box-footer -->

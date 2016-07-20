@@ -18,9 +18,14 @@
             Status: true,
         }
 
+        $scope.moreImages = [];
+
         function loadProductDetail() {
             apiService.get('/api/product/getbyid/' + $stateParams.id, null, function (resutl) {
                 $scope.product = resutl.data;
+                if ($scope.product.MoreImages != null) {
+                    $scope.moreImages = JSON.parse($scope.product.MoreImages);
+                }
             }, function (error) {
                 notificationService.displayError(error.data);
             });
@@ -28,7 +33,7 @@
         loadProductDetail();
         $scope.ckeditorOptions = {
             language: 'vi',
-            height:'200px'
+            height: '200px'
         }
         $scope.UpdateProduct = UpdateProduct;
         $scope.GetSeoTitle = GetSeoTitle;
@@ -38,6 +43,7 @@
         }
 
         function UpdateProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
             apiService.put('/api/product/update', $scope.product,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được cập nhật.');
@@ -55,6 +61,26 @@
             });
         }
         loadCategoryID();
+
+        $scope.ChooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                })
+            }
+            finder.popup();
+        }
+        $scope.ChooseMoreImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                })
+
+            }
+            finder.popup();
+        }
     }
 
 })(angular.module('myshop.products'));
