@@ -36,7 +36,7 @@ namespace MyShop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _productCategoryService.GetAll();
+                var model = _productCategoryService.GetAllToUse();
 
                 var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
 
@@ -73,6 +73,9 @@ namespace MyShop.Web.Api
             });
         }
 
+        
+
+
         [Route("getbyid/{id:int}")]
         [HttpGet]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
@@ -103,9 +106,23 @@ namespace MyShop.Web.Api
                 else
                 {
                     var newProductCategory = new ProductCategory();
+                    var productParentCategory = new ProductCategory();
                     newProductCategory.UpdateProductCategory(productCategoryVm);
+
+                    if (productCategoryVm.ParentID != null)
+                    {
+                         productParentCategory = _productCategoryService.GetById(productCategoryVm.ParentID.Value);
+                    }
+                    
                     newProductCategory.CreatedDate = DateTime.Now;
                     newProductCategory.CreatedBy = User.Identity.Name;
+                    newProductCategory.IsLast = true;
+                    if (productParentCategory.ID != 0)
+                    {
+                        productParentCategory.IsLast = false;
+                        _productCategoryService.Update(productParentCategory);
+                    }
+
                     _productCategoryService.Add(newProductCategory);
                     _productCategoryService.Save();
 

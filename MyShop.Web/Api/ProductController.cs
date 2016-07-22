@@ -38,7 +38,7 @@ namespace MyShop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _productCategoryService.GetAll();
+                var model = _productCategoryService.GetAllToUse();
 
                 var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
 

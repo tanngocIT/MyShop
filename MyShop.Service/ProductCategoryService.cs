@@ -18,6 +18,8 @@ namespace MyShop.Service
 
         IEnumerable<ProductCategory> GetAll(string keyword);
 
+         IEnumerable<ProductCategory> GetAllToUse();
+
         IEnumerable<ProductCategory> GetAllByParentId(int parentId);
 
         ProductCategory GetById(int id);
@@ -49,6 +51,11 @@ namespace MyShop.Service
         public IEnumerable<ProductCategory> GetAll()
         {
             return _productCategoryRepository.GetAll();
+        }
+
+        public IEnumerable<ProductCategory> GetAllToUse()
+        {
+            return _productCategoryRepository.GetMulti(x=>x.Status==true);
         }
 
         public IEnumerable<ProductCategory> GetAll(string keyword)

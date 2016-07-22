@@ -243,6 +243,8 @@
     <Compile Include="Infrastructure\Extentions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\FooterViewModel.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PostCategoryViewModel.cs" />
@@ -251,6 +253,7 @@
     <Compile Include="Models\ProductCategoryViewModel.cs" />
     <Compile Include="Models\ProductTagViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -4169,6 +4172,7 @@
     <Content Include="Assets\Client\css\bootstrap.css" />
     <Content Include="Assets\Client\css\etalage.css" />
     <Content Include="Assets\Client\css\form.css" />
+    <Content Include="Assets\Client\css\mystyle.css" />
     <Content Include="Assets\Client\css\style.css" />
     <Content Include="Assets\Client\images\a-star.png" />
     <Content Include="Assets\Client\images\arrow1.png" />

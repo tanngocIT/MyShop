@@ -54,8 +54,24 @@ namespace MyShop.Web.Api
                 else
                 {
                     PostCategory newPostCategory = new PostCategory();
+                    var postParentCategoryDb = new PostCategory();
+                    if (postCategoryVm.ParentID != null)
+                    {
+                        postParentCategoryDb = _postCategoryService.GetById(postCategoryVm.ParentID.Value);
+                    }
+                       
                     newPostCategory.UpdatePostCategory(postCategoryVm);
                     newPostCategory.CreatedBy = User.Identity.Name;
+
+                    newPostCategory.IsLast = true;
+
+                    if (postParentCategoryDb != null)
+                    {
+                        postParentCategoryDb.IsLast = false;
+                        _postCategoryService.Update(postParentCategoryDb);
+                    }
+
+                    
 
                     var category = _postCategoryService.Add(newPostCategory);
                     _postCategoryService.Save();

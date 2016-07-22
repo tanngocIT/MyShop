@@ -42,5 +42,7 @@ namespace MyShop.Web.Models
 
         [Required]
         public bool Status { set; get; }
+
+        public bool? IsLast { set; get; }
     }
 }

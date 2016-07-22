@@ -80,6 +80,14 @@
     <Compile Include="Migrations\201607200159199_AddTagsField.Designer.cs">
       <DependentUpon>201607200159199_AddTagsField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607210846018_AddIsLast.cs" />
+    <Compile Include="Migrations\201607210846018_AddIsLast.Designer.cs">
+      <DependentUpon>201607210846018_AddIsLast.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607220232208_AddContentToSlides.cs" />
+    <Compile Include="Migrations\201607220232208_AddContentToSlides.Designer.cs">
+      <DependentUpon>201607220232208_AddContentToSlides.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MyShopDbContext.cs" />
@@ -128,6 +136,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607200159199_AddTagsField.resx">
       <DependentUpon>201607200159199_AddTagsField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607210846018_AddIsLast.resx">
+      <DependentUpon>201607210846018_AddIsLast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607220232208_AddContentToSlides.resx">
+      <DependentUpon>201607220232208_AddContentToSlides.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

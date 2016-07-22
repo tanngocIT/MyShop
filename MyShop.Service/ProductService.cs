@@ -3,6 +3,8 @@ using MyShop.Data.Infrastructure;
 using MyShop.Data.Repositories;
 using MyShop.Model.Models;
 using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace MyShop.Service
 {
@@ -19,6 +21,10 @@ namespace MyShop.Service
         IEnumerable<Product> GetAll(string keyword);
 
         IEnumerable<Product> GetAllByCategoryId(int parentId);
+
+        IEnumerable<Product> GetLastest(int top);
+
+        IEnumerable<Product> GetHotProduct(int top);
 
         Product GetById(int id);
 
@@ -131,6 +137,16 @@ namespace MyShop.Service
                 }
 
             }
+        }
+
+        public IEnumerable<Product> GetLastest(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetHotProduct(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status==true && x.HotFlag==true).OrderByDescending(x => x.CreatedDate).Take(top);
         }
     }
 }

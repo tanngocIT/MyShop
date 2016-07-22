@@ -39,5 +39,6 @@ namespace MyShop.Web.Models
         public string MetaDescription { set; get; }
 
         public bool Status { set; get; }
+        public bool? IsLast { set; get; }
     }
 }
