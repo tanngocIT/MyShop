@@ -86,10 +86,10 @@ ul.support li a {
 }
 .account,.cart{
 	float:left;
-	width:40%;
+	width:25%;
 }
 .cart{
-	width:24%;
+	width:25%;
 }
 .account a span{
 	background: url(../images/img-sprite.png)-117px -30px;
@@ -112,7 +112,7 @@ ul.support li a {
 }
 ul.login{
 	float:left;
-	width:36%;
+	width:50%;
 	margin:0;
 }
 ul.login li{
