@@ -22,6 +22,8 @@ namespace MyShop.Service
 
         IEnumerable<ProductCategory> GetAllByParentId(int parentId);
 
+        
+
         ProductCategory GetById(int id);
 
         void Save();
